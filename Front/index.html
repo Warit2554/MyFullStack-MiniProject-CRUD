@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="src/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="src/logo192.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js"></script>
+    <title>Trip compare</title>
+  </head>
+
+  <body class="d-flex flex-column">
+    <nav class="navbar bg-orange">
+      <div class="container-fluid d-inline-block text-light m-3 align-middle">
+        <i class="bi bi-r-square-fill float-start fs-4"></i>
+        <h3 class="float-start ms-3">Restarant Compare</h3>
+        <div class="float-end">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control"
+            placeholder="You must login frist" aria-label="Seach" 
+            id="KeywordSearch" onkeypress="tablesort()" disabled>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#Login" onclick="">
+              <i class="bi bi-door-open"> Login </i>
+            </button> 
+            <!-- <input type="text" class=form-control" placeholder="ค้นหารายชื่อผู้ป่วย" aria-label="Seach" id="KeywordSearch" onkeypress="loadQueryTable(event)"> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="table-responsive my-2">
+        <div class="d-flex bd-highlight mb-3">
+          <div class="me-auto p-2 bd-highlight">
+            <h4>Restarant Name</h4>
+          </div>
+          <div class="p-2 bd-highlight">
+            <button type="button" class="btn btn-secondary" id ="showbox" onclick="showUserCreateBox()" disabled><i class="bi bi-person-plus-fill"></i> เพิ่มข้อมูล
+            </button>
+
+            <!-- <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="showUserCreateBox()">
+              <i class="bi bi-person-plus-fill"></i> เพิ่มข้อมูล
+            </button> -->
+          </div>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Review</th>
+              <th scope="col">Ranking of</th>
+              <th scope="col">Ranking</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Price Level</th>
+              <!-- <th scope="col">สิทธิ์ 3</th> -->
+              <!-- <th scope="col">โรค</th>
+              <th scope="col">ที่อยู่</th>
+              <th scope="col">เบอร์ติดต่อ</th> -->
+              
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          
+          <tbody id="patientTable">
+            <tr>
+              <th scope="row" colspan="5">YOU SHOULD LOCKIN FRIST.. to view data</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- <button id="long" onclick="more()" hidden>MORE</button> -->
+    <footer
+      class="bottom-0 end-0 bg-orange text-center text-lg-start text-light"
+    >
+      <!-- Copyright -->
+      <div class="text-center p-3">© 2024 Copyright | Trip compare</div>
+      <!-- Copyright -->
+    </footer>
+  </body>
+</html>
+
+
+<div class="modal fade" id="Login" tabindex="-1" aria-labelledby="LoginLabel" aria-hidden="true"> 
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="myform bg-dark">
+              <h1 class="text-center">Login</h1>
+              <form id="login-form">
+                  <div class="mb-3 mt-4">
+                      <label for="Username" class="form-label">Username</label>
+                      <input type="text" class="form-control" id="username">
+                  </div>
+                  <div class="mb-3">
+                      <label for="Password" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="password">
+                  </div>
+                  <button type="button" class="btn btn-light mt-3 login" onclick="login()">LOGIN</button>
+
+                   <!-- <p>Not a member? <a href="#" data-bs-toggle="modal" data-bs-target="#Register" >Signup now</a></p> --> 
+              </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+<!-- <div class="modal fade" id="Register" tabindex="-1" aria-labelledby="RegisterLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-body">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="myform bg-dark">
+            <h1 class="text-center">Signup</h1>
+            <form>
+                <div class="mb-3 mt-4">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-light mt-3 signup">Signup</button>
+                  Then go to main and login again
+                <p>Please remember your account</p>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
+</div>  -->
